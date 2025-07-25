@@ -22,6 +22,8 @@ jobs:
     - name: Install dependencies
       run: npm install --no-bin-links
 
+    - name: Fix mocha permissions
+      run: chmod +x ./node_modules/.bin/mocha
 
     - name: Dependency check (npm audit)
       run: |
