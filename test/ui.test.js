@@ -1,16 +1,21 @@
 import { Builder, By, until } from 'selenium-webdriver';
-import chrome from 'selenium-webdriver/chrome';
+import chrome from 'selenium-webdriver/chrome.js';
 import { expect } from 'chai';
 
-describe('UI Test with Selenium', function () {
-  this.timeout(20000);
+describe('UI Test with Selenium (Headless Chrome)', function () {
+  this.timeout(20000); // give browser time to load
 
   let driver;
 
   before(async () => {
     const options = new chrome.Options();
     options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
-    driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+
+    driver = await new Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(options)
+      .build();
+
     await driver.get('http://localhost:3000');
   });
 
@@ -25,7 +30,7 @@ describe('UI Test with Selenium', function () {
     expect(form).to.not.be.null;
   });
 
-  it('should submit form and redirect to result page', async () => {
+  it('should submit the form and redirect to the result page', async () => {
     const input = await driver.findElement(By.name('term'));
     await input.sendKeys('selenium test');
 
