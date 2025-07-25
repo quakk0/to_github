@@ -2,8 +2,8 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha",
-    "ui-test": "mocha test/ui.test.js"
+    "test": "npx mocha",
+    "ui-test": "npx mocha test/ui.test.js"
   },
   "dependencies": {
     "express": "^4.21.2"
