@@ -9,9 +9,12 @@
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
     "axios": "^1.11.0",
     "chai": "^5.2.1",
     "chromedriver": "^138.0.4",
+    "eslint": "^9.31.0",
+    "globals": "^16.3.0",
     "mocha": "^11.7.1",
     "selenium-webdriver": "^4.34.0"
   }
