@@ -20,7 +20,8 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: npm install
+      run: npm install --no-bin-links
+
 
     - name: Dependency check (npm audit)
       run: |
