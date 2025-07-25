@@ -1,9 +1,18 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha",
+    "ui-test": "mocha test/ui.test.js"
   },
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "axios": "^1.11.0",
+    "chai": "^5.2.1",
+    "chromedriver": "^138.0.4",
+    "mocha": "^11.7.1",
+    "selenium-webdriver": "^4.34.0"
   }
 }

@@ -1,0 +1,43 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  full-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Dependency check (npm audit)
+      run: |
+        npm audit --audit-level=moderate || echo "Audit completed with warnings"
+
+    - name: Start app in background
+      run: |
+        npm start &
+        sleep 3
+
+    - name: Run integration tests
+      run: npm test
+
+    - name: Install Chrome for Selenium
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Run Selenium UI tests
+      run: npm run ui-test
+      env:
+        CHROME_BIN: /usr/bin/google-chrome
