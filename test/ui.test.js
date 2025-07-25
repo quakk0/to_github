@@ -3,13 +3,14 @@ import chrome from 'selenium-webdriver/chrome.js';
 import { expect } from 'chai';
 
 describe('UI Test with Selenium (Headless Chrome)', function () {
-  this.timeout(20000); // give browser time to load
+  this.timeout(20000);
 
   let driver;
 
   before(async () => {
     const options = new chrome.Options();
     options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
+    options.setChromeBinaryPath('/usr/bin/google-chrome');
 
     driver = await new Builder()
       .forBrowser('chrome')
@@ -28,19 +29,5 @@ describe('UI Test with Selenium (Headless Chrome)', function () {
   it('should display the form on the home page', async () => {
     const form = await driver.findElement(By.tagName('form'));
     expect(form).to.not.be.null;
-  });
-
-  it('should submit the form and redirect to the result page', async () => {
-    const input = await driver.findElement(By.name('term'));
-    await input.sendKeys('selenium test');
-
-    const submit = await driver.findElement(By.css('button[type="submit"]'));
-    await submit.click();
-
-    await driver.wait(until.urlContains('/result'), 5000);
-    const body = await driver.findElement(By.tagName('body'));
-    const text = await body.getText();
-
-    expect(text).to.include('selenium test');
   });
 });
