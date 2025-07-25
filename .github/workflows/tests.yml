@@ -58,6 +58,6 @@ jobs:
 
     - name: Run UI Tests 
       run: | 
-        python tests/sel.py
+        python test/sel.py
 
 
