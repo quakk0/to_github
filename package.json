@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "test": "npx mocha",
+    "test": "npx mocha test/http.test.js",
     "ui-test": "npx mocha test/ui.test.js"
   },
   "dependencies": {
